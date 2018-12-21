@@ -29,7 +29,8 @@
 
 <body>
 	<h1> Hi </h1>	
-<script src="http://d3js.org/d3.v3.min.js"></script>
+	just testing
+<script src="http://d3js.org/d3.v5.min.js"></script>
 
 <script>
 // set the dimensions of the canvas
@@ -65,6 +66,8 @@ var svg = d3.select("body").append("svg")
 
 
 // load the data
+	const data = await d3.json("data.json");
+	window.alert(data);
 d3.json("./data.json", function(error, data) {
 	alert(error)
 
