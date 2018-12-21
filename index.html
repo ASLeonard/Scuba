@@ -65,7 +65,8 @@ var svg = d3.select("body").append("svg")
 
 
 // load the data
-d3.json("../data.json", function(error, data) {
+d3.json("./data.json", function(error, data) {
+	alert(error)
 
     data.forEach(function(d) {
         d.Letter = d.Letter;
