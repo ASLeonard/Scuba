@@ -26,8 +26,9 @@
 	</style>
 </head>
 
+
 <body>
-	
+	<h1> Hi </h1>	
 <script src="http://d3js.org/d3.v3.min.js"></script>
 
 <script>
@@ -64,7 +65,7 @@ var svg = d3.select("body").append("svg")
 
 
 // load the data
-d3.json("data.json", function(error, data) {
+d3.json("../data.json", function(error, data) {
 
     data.forEach(function(d) {
         d.Letter = d.Letter;
