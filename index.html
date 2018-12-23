@@ -33,7 +33,7 @@ var x = d3.scaleBand()
 var y = d3.scaleLinear()
 	.rangeRound([height, 0]);
 
-d3.csv("data/dives.csv").then(function (data) {
+d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQbCNthNcZ24SW9kOuMpmLr6ubJ_38gFmk42q-24mAPP1VPZtY7C_uqkwwwIhAsQ0r3kS6XrBY45AGs/pub?output=csv").then(function (data) {
 	x.domain(data.map(function (d) {
 			return d.dive;
 		}));
