@@ -30,27 +30,8 @@
 <body>
 	<h1> Hi </h1>	
 	just testing
-<script src="http://d3js.org/d3.v5.min.js"></script>
-
-<script type="text/javascript"charset="utf-8">
-            d3.text("https://docs.google.com/spreadsheets/d/e/2PACX-1vQbCNthNcZ24SW9kOuMpmLr6ubJ_38gFmk42q-24mAPP1VPZtY7C_uqkwwwIhAsQ0r3kS6XrBY45AGs/pub?gid=1075195205&single=true&output=csv", function(data) {
-                var parsedCSV = d3.csv.parseRows(data);
-
-                var container = d3.select("body")
-                    .append("table")
-
-                    .selectAll("tr")
-                        .data(parsedCSV).enter()
-                        .append("tr")
-
-                    .selectAll("td")
-                        .data(function(d) { return d; }).enter()
-                        .append("td")
-                        .text(function(d) { return d; });
-            });
-
-
-</script>
+	<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQbCNthNcZ24SW9kOuMpmLr6ubJ_38gFmk42q-24mAPP1VPZtY7C_uqkwwwIhAsQ0r3kS6XrBY45AGs/pubhtml?widget=true&amp;headers=false"></iframe>
+	
 just winging it
 
 </body>
