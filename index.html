@@ -32,6 +32,13 @@ var x = d3.scaleBand()
 
 var y = d3.scaleLinear()
 	.rangeRound([height, 0]);
+var colors = ["#ffffd9", "#edf8b1", "#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#253494", "#081d58"];
+
+var colorScale = d3.scale.quantile()
+  .domain([0, colors.length - 1, d3.max(data, function(d) {
+    return d;
+  })])
+  .range(colors);
 
 d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQbCNthNcZ24SW9kOuMpmLr6ubJ_38gFmk42q-24mAPP1VPZtY7C_uqkwwwIhAsQ0r3kS6XrBY45AGs/pub?output=csv").then(function (data) {
 	x.domain(data.map(function (d) {
@@ -65,6 +72,9 @@ d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQbCNthNcZ24SW9kOuMpmLr6
 	.attr("y", function (d) {
 		return y(Number(d.depth));
 	})
+	.style("fill", function(d) {
+    return colorScale(d);
+  })
 	.attr("width", x.bandwidth())
 	.attr("height", function (d) {
 		return height - y(Number(d.depth));
