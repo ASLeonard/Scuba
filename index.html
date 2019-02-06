@@ -1,77 +1,60 @@
 <!DOCTYPE html>
-<svg width="960" height="500"></svg>
-<style>
-	.bar {
-	  fill: steelblue;
-	}
-
-	.bar:hover {
-	  fill: brown;
-	}
-</style>
-// <script src="https://d3js.org/d3.v5.min.js"></script>
-<script src="//d3js.org/d3.v5.min.js"></script>
-<script>
-
-var svg = d3.select("svg"),
-margin = {
-	top: 20,
-	right: 20,
-	bottom: 30,
-	left: 50
-},
-width = +svg.attr("width") - margin.left - margin.right,
-height = +svg.attr("height") - margin.top - margin.bottom,
-g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-var parseTime = d3.timeParse("%d-%b-%y");
-
-var x = d3.scaleBand()
-	.rangeRound([0, width])
-	.padding(0.1);
-
-var y = d3.scaleLinear()
-	.rangeRound([height, 0]);
-var colors = ["#ffffd9", "#edf8b1", "#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#253494", "#081d58"];
+<meta charset="utf-8">
+	
+	<!-- Google fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Raleway:100,300' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
 
 
+	<!-- D3 -->
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	
+	<!-- Bootstrap -->
 
-d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQbCNthNcZ24SW9kOuMpmLr6ubJ_38gFmk42q-24mAPP1VPZtY7C_uqkwwwIhAsQ0r3kS6XrBY45AGs/pub?output=csv").then(function (data) {
-	x.domain(data.map(function (d) {
-			return d.dive;
-		}));
-	y.domain([0, d3.max(data, function (d) {
-				return Number(d.depth);
-			})]);
 
-	g.append("g")
-	.attr("transform", "translate(0," + height + ")")
-	.call(d3.axisBottom(x))
+	<!-- Combobox script for the search box -->
 
-	g.append("g")
-	.call(d3.axisLeft(y))
-	.append("text")
-	.attr("fill", "#000")
-	.attr("transform", "rotate(-90)")
-	.attr("y", 6)
-	.attr("dy", "0.71em")
-	.attr("text-anchor", "end")
-	.text("Speed");
+	<link rel="stylesheet" href="css/tooltip.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
 
-	g.selectAll(".bar")
-	.data(data)
-	.enter().append("rect")
-	.attr("class", "bar")
-	.attr("x", function (d) {
-		return x(d.dive);
-	})
-	.attr("y", function (d) {
-		return y(Number(d.depth));
-	})
-	.attr("width", x.bandwidth())
-	.attr("height", function (d) {
-		return height - y(Number(d.depth));
-	});
-});
+	<script src="js/showTooltip.js"></script>
+	<script src="js/createLegend.js"></script>
+	<script src="js/helperFunctions.js"></script>
+	
+<body>
 
-</script>
+	<div id="intro">
+		<h2>IcyHawaiian Diving</h2>
+		<span>Just trying some new things out based on other exising webpages.</span><br>
+		<span>Hopefully a more exotic way of visualising a pointless data set. Who knows</span><br>
+	</div>
+	
+	
+	<!-- chart -->
+	<div id="chart"></div>
+
+	<div id="note">
+		<span>Experimenting by ASLeonard</span><br>
+		<span>Still working on full features</a></span>
+	</div>
+	
+	<!-- Create div structure for Tooltip -->
+	<div id="tooltip">
+		<div id="tooltip-Container">
+			<div class="tooltip-band"></div>
+			<div class="tooltip-rule"></div>
+			<div id="tooltip-year"></div>
+			<div id="tooltip-title"></div>
+			<div id="tooltip-place"></div>
+			<div class="tooltip-tail"></div>
+		</div>
+	</div>
+
+	<script src="js/mainCode.js"></script>
+
+</body>
+</html>
