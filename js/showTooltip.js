@@ -1,17 +1,6 @@
 //Show the tooltip on hover
 function showTooltip(d) {
 	
-	if (inSearch == true) {
-		//Don't do anything if the search is active and the user doesn't mouse over the selected artist
-		if (d.artist.toLowerCase() !== selectedArtist.toLowerCase()) return;	
-	} else {
-		//Save the current element
-		var chosen = d;
-		//Reduce opacity of all other elements
-		svg.selectAll(".dot")
-			.style("opacity", function(d) { return d.position === chosen.position ? 1 : 0.2; });		
-	}// else
-	
 	//Position tooltip
 	var Loc = this.getBoundingClientRect();
 	//Set first location of tooltip and change opacity
@@ -25,10 +14,10 @@ function showTooltip(d) {
 		.style('opacity',1);	
 
 	//Change the texts inside the tooltip
-	d3.select("#tooltip .tooltip-band").text(d.artist);
-	d3.select("#tooltip-year").html(d.release);
-	d3.select("#tooltip-title").html(d.title);
-	d3.select("#tooltip-place").html("Position in Top 2000: " + d.position);
+	d3.select("#tooltip .tooltip-band").text(d.country);
+	d3.select("#tooltip-year").html(d.date);
+	d3.select("#tooltip-title").html(d.site);
+	d3.select("#tooltip-place").html("Depth: " + d.depth);
 }//showTooltip	
 
 function hideTooltip(d) {

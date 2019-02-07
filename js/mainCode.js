@@ -65,10 +65,10 @@ d3.select("#searchBoxWrapper")
 //////////////////////////////////////////////////////
 	
 var x = d3.scaleLinear()
-    .range([0, width]);
+          .range([0, width]);
 
 var y = d3.scaleLinear()
-    .range([height, 0]);
+          .range([height, 0]);
 
 
 var xAxis = d3.axisBottom(x).tickFormat(d3.format("d"));
@@ -118,30 +118,46 @@ var yearTitle = svg.append('text')
 
 d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQbCNthNcZ24SW9kOuMpmLr6ubJ_38gFmk42q-24mAPP1VPZtY7C_uqkwwwIhAsQ0r3kS6XrBY45AGs/pub?gid=237789156&single=true&output=csv").then(function (data) {
 
+	//var year_counts = {};
+
 	for(var i = 0; i < data.length; i++) { //Faster?
 		data[i].dive = +data[i].dive;
 		data[i].date = +data[i].date.slice(0,4);
+		//years[data[i].date] = (years[data[i].date] || 0) + 1;
+		data[i].country = "" + data[i].country;
 		data[i].site = "" + data[i].site;
 		data[i].depth = +data[i].depth;
 		data[i].time = +data[i].time;
 	}
 
+	var cf = crossfilter(data);
+	// Create a dimension by political party
+    	var cfYear = cf.dimension(function(d) { return +d.date; });
+	//console.log(cfYear.size());
+
+
+	
+
 	//Calculate domains of chart
 	startYear = d3.min(data, function(d) { return d.date; });
 	x.domain([startYear-1,d3.max(data, function(d) { return d.date; })+1]);
+
+	//d3.max(year_counts)]
+	//var max_year=Object.keys(years).reduce(function(a, b){ return years[a] > years[b] ? a : b })
+
 	y.domain([0,100]).nice();
 
-	//Keeps track of the height of each year
+
 	years = d3.range(d3.min(x.domain()),d3.max(x.domain()))
 		.map(function(d,i) {
 		  return {
-			year: d,
+			date: d,
 			number: 1
 		  };
 		});
 
 	//Size of the "song" rectangles
-	rectWidth = Math.floor(x.range()[1]/100);
+	rectWidth = Math.floor(x.range()[1]/50);
 	rectHeight = Math.min(3,Math.floor(y.range()[0]/100));
 	rectCorner = rectHeight/2;
 
@@ -153,8 +169,10 @@ d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQbCNthNcZ24SW9kOuMpmLr6
 		.append("text")
 		  .attr("class", "label")
 		  .attr("x", width/2)
-		  .attr("y", 35)
+		  .attr("y", 45)
 		  .style("text-anchor", "middle")
+		  .style("fill", "white")
+		  .style('font-size', 24)
 		  .text("Year");
 
 	//Create y axis
@@ -167,32 +185,27 @@ d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQbCNthNcZ24SW9kOuMpmLr6
 		  .attr("y", 8)
 		  .attr("dy", ".71em")
 		  .style("text-anchor", "end")
+		  .style("fill", "white")
+		  .style('font-size', 24)
 		  .text("Number of dives")
 	
 	//Create the legend
 	createLegend();
 
-//Change the year when moving the slider
-	updateDots = function (chosenYear) {
-		
-		//Filter the chosen year from the total dataset
+	var yearData = cfYear.filterAll();
 
-
-		//Update the search box with only the names available in the chosen year
-
-		
-		//Reset the heights
-		years.forEach(function(value, index) {
+	years.forEach(function(value, index) {
 			years[index].number = 1;
 		});
-	
-		//DATA JOIN
-		//Join new data with old elements, if any.
-		var dots = dotContainer.selectAll(".dot")
-					.data(data, function(d) { return d.depth; });
-		
-		//ENTER
-		dots.enter().append("rect")
+
+	var dots = dotContainer.selectAll(".dot")
+					.data(yearData
+							.top(Infinity)
+							.sort(function(a, b) {return a.depth - b.depth}) 
+							, function(d) { return d.depth; });
+
+
+	dots.enter().append("rect")
 			  .attr("class", "dot")
 			  .attr("width", rectWidth)
 			  .attr("height", rectHeight)
@@ -202,40 +215,8 @@ d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQbCNthNcZ24SW9kOuMpmLr6
 			  .on("mouseover", showTooltip)
 			  .on("mouseout", hideTooltip)
 			  .attr("x", function(d) { return (x(d.date) - rectWidth/2); })
-			  .attr("y", function(d) {return y(0);})
+			  .attr("y", function(d) {return locateY(d);})
 			  .style("opacity",0);
 
-		//EXIT
-		dots.exit()
-			.transition().duration(500)
-			.attr("y", function(d) { return y(0); })
-			.style("opacity",0)
-			.remove();
-			
-		//UPDATE
-		//First drop all rects to the zero y-axis and make them invisible
-		//Then set them all to the correct new release year (x-axis)
-		//Then let them grow to the right y locations again and make the visible
-		dots
-			.transition().duration(500)
-			.attr("y", function(d) { return y(0); })
-			.style("opacity",0)
-			.call(endall, function() {
-				dots
-					.attr("x", function(d) { return (x(d.date) - rectWidth/2); })
-					.attr("y", function(d) { return locateY(d); })
-					.transition().duration(10).delay(function(d,i) { return i/2; })
-					.style("opacity",1);
-			});
-			
-		//Change year title
-		yearTitle.text(chosenYear);
-		//Save the current year
-		chosenYearOld = chosenYear;
-		
-	}//function updateDots
-	
-	//Call first time
-	updateDots(chosenYear);
 });
 
