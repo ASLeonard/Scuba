@@ -52,20 +52,14 @@ function createLegend() {
 function legendHover(d) {
 	
 	chosenColor = hexLocation[hexKey[d]];
-	//If the search is active only show the rects that fall into the right position but also belong to the artist
-	//Otherwise show all rects that fall in between the right position
-	if (inSearch == true) {
+
 		svg.selectAll(".dot")
 			.style("opacity", function(d) { 
-				return $.inArray(d.depth, chosenColor.depth) >= 0 &
-					   d.artist.toLowerCase() === selectedArtist.toLowerCase() ? 1 : 0.2; 
-			});	
-	} else {
-		svg.selectAll(".dot")
-			.style("opacity", function(d) { 
-				return $.inArray(d.depth, chosenColor.depth) >= 0 ? 1 : 0.2; 
+				return $.inArray(Math.round(d.depth), chosenColor.depth) >= 0 ? 1 : 0.2; 
 		});		
-	}// else
+	console.log(chosenColor);
+	console.log( $.inArray(38.4, chosenColor.depth));
+// else
 	
 }//legendHover	
 
@@ -73,13 +67,8 @@ function legendHoverOut() {
 
 	//If the search is active, only bring back those rects from the artist
 	//Else bring back all rects
-	if (inSearch == true) {
-		svg.selectAll(".dot")
-			.style("opacity", function(d) { 
-				return d.site.toLowerCase() === selectedArtist.toLowerCase() ? 1 : 0.2; 
-			});		
-	} else {
+
 		svg.selectAll(".dot").style("opacity", 1);		
-	}// else
+	// else
 	
 }//legendHoverOut	
