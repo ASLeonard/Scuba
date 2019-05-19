@@ -76,11 +76,11 @@ var yAxis = d3.axisLeft(y);
 	
 //Create colors
 var hexLocation = [
-	{color:"#007F24", text: "0 - 10", depth: d3.range(0,10)},
-	{color:"#62BF18", text: "10 - 20", depth: d3.range(10,20)},
-	{color:"#FFC800", text: "20 - 30", depth: d3.range(20,30)},
-	{color:"#FF5B13", text: "30 - 35", depth: d3.range(30,35)},
-	{color:"#E50000", text: "35 - 40+", depth: d3.range(35,50)}
+	{color:"#FFE945", text: "0 - 10", depth: d3.range(0,10)},
+	{color:"#CAB969", text: "10 - 20", depth: d3.range(10,20)},
+	{color:"#958F78", text: "20 - 30", depth: d3.range(20,30)},
+	{color:"#666870", text: "30 - 35", depth: d3.range(30,35)},
+	{color:"#00204C", text: "35 - 40+", depth: d3.range(35,50)}
 ];
 var hexKey = [];
 hexLocation.forEach(function(d,i) {

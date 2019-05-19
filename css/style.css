@@ -4,7 +4,7 @@ body {
 	font-family: 'Open Sans', sans-serif;
 	text-align: center;
 	vertical-align: middle;
-	background: black;
+	background: #708090;
 	fill: white;
 	color: white;	
 	cursor:default;
@@ -73,7 +73,7 @@ a {
 .axis path,
 .axis line {
   fill: none;
-  stroke: white;
+  stroke: #098cf0;
   shape-rendering: crispEdges;
 }
 
