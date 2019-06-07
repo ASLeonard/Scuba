@@ -68,7 +68,19 @@
 #tooltip-place {
   color:#333333;
   font-size: 10px;  
+  text-align:left;  
+  overflow:hidden;
+  display: inline-block;
+  white-space: nowrap;
+  margin-bottom: 2px;
+}
+
+#tooltip-place2 {
+  color:#333333;
+  font-size: 10px;  
   text-align:center;  
   overflow:hidden;
+  display: inline-block;
+  white-space: nowrap;
   margin-bottom: 2px;
 }

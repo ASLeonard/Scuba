@@ -76,11 +76,11 @@ var yAxis = d3.axisLeft(y);
 	
 //Create colors
 var hexLocation = [
-	{color:"#FFE945", text: "0 - 10", depth: d3.range(0,10)},
-	{color:"#CAB969", text: "10 - 20", depth: d3.range(10,20)},
-	{color:"#958F78", text: "20 - 30", depth: d3.range(20,30)},
-	{color:"#666870", text: "30 - 35", depth: d3.range(30,35)},
-	{color:"#00204C", text: "35 - 40+", depth: d3.range(35,50)}
+	{color:"#fafa0f", text: "0 - 10", depth: d3.range(0,10)},
+	{color:"#c8b955", text: "10 - 20", depth: d3.range(10,20)},
+	{color:"#64b98c", text: "20 - 30", depth: d3.range(20,30)},
+	{color:"#0aa3af", text: "30 - 35", depth: d3.range(30,35)},
+	{color:"#e01af2", text: "35 - 40+", depth: d3.range(35,50)}
 ];
 var hexKey = [];
 hexLocation.forEach(function(d,i) {
@@ -116,7 +116,10 @@ var yearTitle = svg.append('text')
 ///////////////////// Read in data /////////////////////////
 ////////////////////////////////////////////////////////////
 
-d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQbCNthNcZ24SW9kOuMpmLr6ubJ_38gFmk42q-24mAPP1VPZtY7C_uqkwwwIhAsQ0r3kS6XrBY45AGs/pub?gid=237789156&single=true&output=csv").then(function (data) {
+//"https://docs.google.com/spreadsheets/d/e/2PACX-1vQbCNthNcZ24SW9kOuMpmLr6ubJ_38gFmk42q-24mAPP1VPZtY7C_uqkwwwIhAsQ0r3kS6XrBY45AGs/pub?gid=237789156&single=true&output=csv"
+
+d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQbCNthNcZ24SW9kOuMpmLr6ubJ_38gFmk42q-24mAPP1VPZtY7C_uqkwwwIhAsQ0r3kS6XrBY45AGs/pub?gid=1075195205&single=true&output=csv").then(function (data) {
+
 
 	//var year_counts = {};
 

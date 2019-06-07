@@ -18,6 +18,7 @@ function showTooltip(d) {
 	d3.select("#tooltip-year").html(d.date);
 	d3.select("#tooltip-title").html(d.site);
 	d3.select("#tooltip-place").html("Depth: " + d.depth);
+        d3.select("#tooltip-place2").html("Time: " + d.time);
 }//showTooltip	
 
 function hideTooltip(d) {
