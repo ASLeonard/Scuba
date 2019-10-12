@@ -125,25 +125,28 @@ d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQbCNthNcZ24SW9kOuMpmLr6
 
 	for(var i = 0; i < data.length; i++) { //Faster?
 		data[i].dive = +data[i].dive;
-		data[i].date = +data[i].date.slice(0,4);
-		//years[data[i].date] = (years[data[i].date] || 0) + 1;
+		data[i].year = +data[i].date.slice(0,4);
+        data[i].month = data[i].date.slice(5,10);
+
 		data[i].country = "" + data[i].country;
 		data[i].site = "" + data[i].site;
 		data[i].depth = +data[i].depth;
+        //console.log(data[i].time);
 		data[i].time = +data[i].time;
+        
 	}
 
 	var cf = crossfilter(data);
 	// Create a dimension by political party
-    	var cfYear = cf.dimension(function(d) { return +d.date; });
+    	var cfYear = cf.dimension(function(d) { return +d.year; });
 	//console.log(cfYear.size());
 
 
 	
 
 	//Calculate domains of chart
-	startYear = d3.min(data, function(d) { return d.date; });
-	x.domain([startYear-1,d3.max(data, function(d) { return d.date; })+1]);
+	startYear = d3.min(data, function(d) { return d.year; });
+	x.domain([startYear-1,d3.max(data, function(d) { return d.year; })+1]);
 
 	//d3.max(year_counts)]
 	//var max_year=Object.keys(years).reduce(function(a, b){ return years[a] > years[b] ? a : b })
@@ -154,7 +157,7 @@ d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQbCNthNcZ24SW9kOuMpmLr6
 	years = d3.range(d3.min(x.domain()),d3.max(x.domain()))
 		.map(function(d,i) {
 		  return {
-			date: d,
+			year: d,
 			number: 1
 		  };
 		});
@@ -217,7 +220,7 @@ d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQbCNthNcZ24SW9kOuMpmLr6
 			  .style("fill", function(d) { return color(d.depth); })
 			  .on("mouseover", showTooltip)
 			  .on("mouseout", hideTooltip)
-			  .attr("x", function(d) { return (x(d.date) - rectWidth/2); })
+			  .attr("x", function(d) { return (x(d.year) - rectWidth/2); })
 			  .attr("y", function(d) {return locateY(d);})
 			  .style("opacity",1);
 

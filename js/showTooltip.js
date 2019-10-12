@@ -15,10 +15,10 @@ function showTooltip(d) {
 
 	//Change the texts inside the tooltip
 	d3.select("#tooltip .tooltip-band").text(d.country);
-	d3.select("#tooltip-year").html(d.date);
+	d3.select("#tooltip-year").html(d.month);
 	d3.select("#tooltip-title").html(d.site);
 	d3.select("#tooltip-place").html("Depth: " + d.depth);
-        d3.select("#tooltip-place2").html("Time: " + d.time);
+    d3.select("#tooltip-place2").html("Time: " + d.time);
 }//showTooltip	
 
 function hideTooltip(d) {

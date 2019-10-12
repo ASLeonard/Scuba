@@ -1,6 +1,7 @@
-## SCUBA visualisation 
+# SCUBA dive log visualisation 
+![License Badge](https://img.shields.io/github/license/ASLeonard/polyomino_interfaces.svg?style=flat)
 
-Having some fun exploring new ideas and trying to look flashy
+Having some fun exploring new ideas and trying to look flashy.
 
 View the results [here](https://asleonard.github.io/Scuba/)
 

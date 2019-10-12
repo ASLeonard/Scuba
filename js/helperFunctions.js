@@ -9,7 +9,7 @@
 //Calculate height of each rectangle
 function locateY(d) {
 
-	var yearLoc = d.date - startYear;
+	var yearLoc = d.year - startYear;
 	var topping = years[yearLoc].number;
 	years[yearLoc].number += 1;
 	

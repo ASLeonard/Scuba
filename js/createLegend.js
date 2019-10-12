@@ -57,8 +57,8 @@ function legendHover(d) {
 			.style("opacity", function(d) { 
 				return $.inArray(Math.round(d.depth), chosenColor.depth) >= 0 ? 1 : 0.2; 
 		});		
-	console.log(chosenColor);
-	console.log( $.inArray(38.4, chosenColor.depth));
+	//console.log(chosenColor);
+	//console.log( $.inArray(38.4, chosenColor.depth));
 // else
 	
 }//legendHover	
