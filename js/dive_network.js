@@ -28,16 +28,16 @@ var svg = d3.select("#chart").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var radius = 20;
+var radius = 10;
 
 
 var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function(d) { return d.id; }))
     .force("charge", d3.forceManyBody()
-		.strength(function(d) { return -75;})
-		.distanceMax(250))
+		.strength(function(d) { return -25;})
+		.distanceMax(350))
     .force("gravity", d3.forceManyBody()
-		.strength(function(d) { return 25})
+		.strength(function(d) { return 15})
 		.distanceMax(1000))
     .force("center", d3.forceCenter(width / 2, height / 2));
 
@@ -59,7 +59,7 @@ d3.json("data/network.json", function(error, graph) {
 
     
   var circles = node.append("circle")
-      .attr("r", 5)
+      .attr("r", 4)
       .attr("fill", function(d) { return d.colour; })
       .call(d3.drag()
           .on("start", dragstarted)
