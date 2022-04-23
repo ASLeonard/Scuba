@@ -8,7 +8,7 @@ var startYear=2006,
 	rectWidth,
 	rectHeight,
 	rectCorner,
-	currentYear = 2020,
+	currentYear = 2022,
 	chosenYear = currentYear,
 	chosenYearOld = currentYear,
 	optArray, //for search box
@@ -118,8 +118,8 @@ var yearTitle = svg.append('text')
 
 //"https://docs.google.com/spreadsheets/d/e/2PACX-1vQbCNthNcZ24SW9kOuMpmLr6ubJ_38gFmk42q-24mAPP1VPZtY7C_uqkwwwIhAsQ0r3kS6XrBY45AGs/pub?gid=237789156&single=true&output=csv"
 console.log("about to load");
+//d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQbCNthNcZ24SW9kOuMpmLr6ubJ_38gFmk42q-24mAPP1VPZtY7C_uqkwwwIhAsQ0r3kS6XrBY45AGs/pub?gid=1075195205&single=true&output=csv").then(function (data) {
 d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQbCNthNcZ24SW9kOuMpmLr6ubJ_38gFmk42q-24mAPP1VPZtY7C_uqkwwwIhAsQ0r3kS6XrBY45AGs/pub?gid=1075195205&single=true&output=csv").then(function (data) {
-
 
 	//var year_counts = {};
 
