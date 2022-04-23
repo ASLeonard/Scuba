@@ -4,8 +4,8 @@ function showTooltip(d) {
 	//Position tooltip
 	var Loc = this.getBoundingClientRect();
 	//Set first location of tooltip and change opacity
-	var xpos = Loc.left + width/2;
-	var ypos = Loc.top - height*3;
+	var xpos = Loc.left + rectWidth/2;
+	var ypos = Loc.top - rectHeight*3;
 	 
 	//Position the tooltip
 	d3.select("#tooltip")
