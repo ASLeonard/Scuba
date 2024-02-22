@@ -1,5 +1,5 @@
 //Show the tooltip on hover
-function showTooltip(d) {
+function showTooltip(event, d) {
 	
 	//Position tooltip
 	var Loc = this.getBoundingClientRect();
@@ -21,7 +21,7 @@ function showTooltip(d) {
     d3.select("#tooltip-place2").html("Time: " + d.time);
 }//showTooltip	
 
-function hideTooltip(d) {
+function hideTooltip(event, d) {
 
 	//Only reset opacity of no search is being performed
 	if (inSearch == false) {
