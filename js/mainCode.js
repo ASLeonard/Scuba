@@ -8,9 +8,6 @@ var startYear=2006,
 	rectWidth,
 	rectHeight,
 	rectCorner,
-	currentYear = 2022,
-	chosenYear = currentYear,
-	chosenYearOld = currentYear,
 	optArray, //for search box
 	inSearch = false, //is the search box being used - for tooltip
 	selectedArtist, //for search box and highlighting
@@ -106,11 +103,6 @@ var svg = d3.select("#chart").append("svg")
 var dotContainer = svg.append("g").attr("class","dotContainer");
 	
 //Create title to show chosen year
-var yearTitle = svg.append('text')                                     
-	  .attr('x', width/2) 
-	  .attr('y', -10)	  
-	  .attr("class", "yearTitle")
-	  .text(chosenYear);  
 
 ////////////////////////////////////////////////////////////	
 ///////////////////// Read in data /////////////////////////
