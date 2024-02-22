@@ -65,15 +65,15 @@ d3.json("data/network.json", function(error, graph) {
           .on("start", dragstarted)
           .on("drag", dragged)
           .on("end", dragended))
-      .on("mouseover", function(d) {		
+      .on("mouseover", function(event, d) {		
             div.transition()		
                 .duration(200)		
                 .style("opacity", .9);		
-            div	.html("<b>"+d.site+"</b>")	
-                .style("left", (d3.event.pageX) + "px")		
-                .style("top", (d3.event.pageY - 28) + "px");	
+            div.html("<b>"+d.site+"</b>")	
+                .style("left", (event.pageX) + "px")		
+                .style("top", (event.pageY - 28) + "px");	
             })					
-        .on("mouseout", function(d) {		
+        .on("mouseout", function(event, d) {		
             div.transition()		
                 .duration(500)		
                 .style("opacity", 0);	
@@ -108,19 +108,19 @@ d3.json("data/network.json", function(error, graph) {
   }
 });
 
-function dragstarted(d) {
-  if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+function dragstarted(event, d) {
+  if (!event.active) simulation.alphaTarget(0.3).restart();
   d.fx = d.x;
   d.fy = d.y;
 }
 
-function dragged(d) {
-  d.fx = d3.event.x;
-  d.fy = d3.event.y;
+function dragged(event, d) {
+  d.fx = event.x;
+  d.fy = event.y;
 }
 
-function dragended(d) {
-  if (!d3.event.active) simulation.alphaTarget(0);
+function dragended(event, d) {
+  if (!event.active) simulation.alphaTarget(0);
   d.fx = null;
   d.fy = null;
 }

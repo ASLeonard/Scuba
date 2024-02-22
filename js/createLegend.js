@@ -49,7 +49,7 @@ function createLegend() {
 
 }//createLegend
 
-function legendHover(d) {
+function legendHover(event, d) {
 	
 	chosenColor = hexLocation[hexKey[d]];
 
@@ -63,7 +63,7 @@ function legendHover(d) {
 	
 }//legendHover	
 
-function legendHoverOut() {
+function legendHoverOut(event, d) {
 
 	//If the search is active, only bring back those rects from the artist
 	//Else bring back all rects
